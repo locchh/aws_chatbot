@@ -1,2 +1,2 @@
-# template
-project template
+# aws_chatbot
+LLM aws chatbot
