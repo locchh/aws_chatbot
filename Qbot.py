@@ -1,1 +1,29 @@
 import os
+import random
+from langchain.vectorstores import Chroma
+from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
+
+# create embedding
+embedding = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
+
+# Load chromadb langchain
+persist_directory = './chroma/'
+loaded_vectordb = Chroma(
+    persist_directory = persist_directory,
+    embedding_function = embedding
+)
+
+if __name__ == "__main__":
+
+    while True:
+        
+        query = input("User: ")
+        
+        if query == 'exit':
+            break
+
+        docs = loaded_vectordb.similarity_search(query,k=3)
+
+        doc = random.choice(docs)
+
+        print(doc.page_content,'\n')
