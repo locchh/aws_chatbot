@@ -1,0 +1,359 @@
+question
+"Which of the following services uses AWS Edge Locations?
+AWS Identity and Access Management (IAM)
+Amazon CloudFront 
+Amazon Elastic Compute Cloud (Amazon EC2)
+Amazon Virtual Private Cloud (Amazon VPC)"
+"A Site Reliability Engineer has been tasked with implementing a Disaster Recovery (DR) strategy at the lowest cost possible.
+Which DR strategy will meet this requirement?
+Multi-site active
+Backup and Restore 
+Warm Standby
+Pilot Light"
+"A company is deploying a two-tier, highly available web application to AWS. The application needs a storage layer to store artefacts such as photos and videos. Which of the following services can be used as the underlying storage mechanism.
+Amazon RDS instance
+Amazon S3 
+Amazon EC2 instance store
+Amazon EBS volume"
+"Which AWS service provides managed databases?
+Amazon S3
+Amazon RDS 
+Amazon EMR
+Amazon Athena"
+"A company wants to run a development environment for their web application which is backed by the relational database Postgres.
+Which AWS service would best meet their requirements?
+AWS Postgres
+RDS 
+DynamoDB
+Amazon Aurora"
+"Which of the below cannot be used to get data onto Amazon S3 Glacier?
+AWS S3 Lifecycle policies 
+AWS Console
+AWS Glacier SDK
+AWS Glacier API"
+"Which of the following are different ways of provisioning and operating in the AWS cloud?
+Infrastructure as Code
+All of the options 
+AWS Command Line Interface (CLI)
+AWS Management Console
+APIs and SDKs"
+"A company needs to establish a connection between two VPCs. The VPCs are located in two different AWS Regions. The company wants to use the existing infrastructure of the VPCs for this connection.
+Which AWS service or feature can be used to establish this connection?
+VPC peering 
+VPC endpoints
+AWS Client VPN
+AWS Direct Connect"
+"What are the four levels of AWS Premium Support?
+All support is free
+Developer, Business, Enterprise On-Ramp, Enterprise 
+Developer, Business, Free, Basic
+Basic, Startup, Business, Enterprise"
+"Which component of the AWS global infrastructure is made up of one or more discrete data centers that have redundant power, networking, and connectivity?
+Availability Zone
+AWS Outposts
+AWS Region 
+Edge location"
+"A company is planning to use AWS to host critical applications. Most of their systems are business critical and need to have response times less than 15 minutes. Which of the following support plans should they consider?
+Business
+Enterprise 
+Developer
+Basic"
+"Which AWS services are managed database services? (Choose two.)
+(Choose 2)
+Amazon Elastic File System (Amazon EFS)
+Amazon RDS 
+Amazon DynamoDB 
+Amazon Elastic Block Store (Amazon EBS)
+Amazon S3"
+"A video game company has their game server residing in US-EAST-1 (North Virginia).
+They want to expand their userbase to all of North America quickly. However, their DevOps team says it will take months to automate the infrastructure as code to deploy servers to other regions.
+Which AWS service would immediately improve the latency to other regions to begin expanding their userbase?
+AWS VPN
+AWS Global Accelerator 
+AWS Direct Connect
+Amazon CloudFront"
+"A company must securely transfer 6 terabytes to AWS from their on-premise environment.
+Which AWS transfer storage should best meet this requirement?
+AWS Snowcone 
+AWS S3
+AWS Glue
+AWS Storage Gateway
+AWS Snowball"
+"What is a use case for considering the use of multiple AWS Regions related to data sovereignty?
+To comply with local regulations 
+To improve security
+To minimize the cost of data transfer
+To simplify resource management"
+"Which of the following AWS services provides a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications?
+Amazon Simple Queue Service (SQS) 
+Amazon Elastic Compute Cloud (EC2)
+Amazon Simple Notification Service (SNS)
+AWS Lambda"
+"You have a variable and intermittent workload, so you want to use a compute service that allows you to pay only for the compute resources you use, without paying for compute time when your code isn’t running. Which of the following services should you use?
+Lightsail
+Lambda 
+ECS
+EC2"
+"You need to automate EC2 resource provisioning to meet demand. Which AWS service can help you accomplish this?
+Application Load Balancer
+Auto Scaling 
+EC2 container Service
+Elastic Load Balancer"
+"Which of the following service is most useful when a Disaster Recovery method is triggered in AWS?
+Amazon Inspector
+Amazon Route 53 
+Amazon SQS
+Amazon SNS"
+"True or False: A Distribution is what we call a series of Edge Locations that make up CDN.
+True 
+False"
+"Which of the following AWS services should you use if you'd like to be notified when you have crossed a billing threshold? (Choose 2)
+(Choose 2)
+AWS Cost Allocation
+CloudWatch 
+Trusted Advisor
+AWS Budget"
+"You need a managed, low-cost relational database solution for your e-commerce store. Which of the following should you use?
+AWS ElastiCache
+RDS 
+DynamoDB
+MySQL on EC2"
+"In AWS, which security aspects are the customer’s responsibility?
+(Choose 4)
+Controlling physical access to computing resources
+None
+Decommissioning storage devices
+Encryption of EBS (Elastic Block Storage) volumes 
+Security Group and ACL (Access Control List)settings 
+Patch management on the EC2 instance’s guest operating system 
+Life-cycle management of IAM credentials"
+"Which AWS service provides infrastructure security optimization recommendations?
+Amazon Elastic Compute Cloud (Amazon EC2) SpotFleet
+AWS Trusted Advisor 
+Reserved Instances
+AWS Application Programming Interface(API)"
+"Which AWS service is used to scan AWS resources for security vulnerabilities and compliance violations?
+AWS Inspector 
+AWS IAM
+AWS Shield
+AWS Config"
+"Which of the following acts as an instance-level firewall to control inbound and outbound access?
+Security groups 
+Virtual private gateways
+Network access control list
+AWS Trusted Advisor"
+"Which of the following is a best practice for securing an Amazon EC2 instance?
+Restricting access using security groups and network ACLs 
+Running all services as the root user
+Using a static IP address for remote access
+Disabling automatic security updates"
+"Where can you find information about AWS compliance controls?
+(Choose 1)
+AWS website and AWS Compliance Center 
+AWS Analytics and Monitoring
+AWS Console and AWS Admin Center
+AWS Admin Center only"
+"True or False: It’s best practice not to use IAM Roles for applications that run on EC2 instances.
+False 
+True"
+"What is the purpose of Multi-Factor Authentication (MFA)?
+(Choose 1)
+To increase the security of user information. 
+To reduce the number of authentication steps.
+To decrease the security of user information.
+To monitor user activity on a network."
+"What acts as a firewall that controls the traffic allowed to reach one or more instances?
+EC2
+Security group 
+IAM
+ACL"
+"What are some different encryption options available on AWS?
+Both at rest and in transit 
+None of the options
+Only at rest
+Only in transit"
+"Which of the following service enables you to assess, audit, and evaluate the configurations of your AWS resources?
+AWS SNS
+AWS Config 
+AWS Cloudwatch
+AWS CloudTrail"
+"The customer is responsible for security in the cloud.
+True 
+False"
+"Which of the following can be used to secure EC2 Instances hosted in AWS.
+(Choose 2)
+Usage of the Internet gateway
+Usage of Network Access Control Lists 
+Usage of AMI’s
+Usage of Security Groups"
+"Which of the following is true about managed policies in IAM?
+They are defined and managed by the AWS Customer 
+They are defined and managed by AWS
+They cannot be modified by the AWS Customer
+They can only be attached to IAM groups"
+"Which tasks are the responsibility of AWS, according to the AWS shared responsibility model? (Choose two.)
+(Choose 2)
+Maintain least privilege access to the root user account.
+Upgrade the firmware of the network infrastructure. 
+Maintain the physical security of edge locations. 
+Patch the Amazon EC2 guest operating system.
+Apply password rotation for IAM users.
+38. Where can you find documentation on AWS security best practices and official documents?
+AWS Knowledge Center
+AWS Glue
+AWS Marketplace
+AWS Systems Manager"
+"Where can you find documentation on AWS security best practices and official documents?
+AWS Knowledge Center 
+AWS Glue
+AWS Marketplace
+AWS Systems Manager"
+"What is a document that provides a formal statement of one or more permissions?
+Resource
+Policy 
+Role
+Permission"
+"You are an AWS Enterprise customer with questions about billing and you overall AWS account? Which of the following AWS support personnel should you contact?
+AWS Support 
+AWS Concierge
+AWS Billing and Accounts
+AWS Technical Account Manager"
+"Which of the following can be used to view one bill when you have multiple AWS Accounts?
+IAM
+Consolidated billing 
+Cost Explorer
+Combined Billing"
+"Which of the following can be used to view one bill when you have multiple AWS Accounts?
+IAM
+Consolidated billing 
+Cost Explorer
+Combined Billing"
+"Which of the following options is the recommended way to get billing support on AWS?
+Open a billing support case 
+Use third-party partners and tools
+Contact your account manager
+Use the AWS Billing and Cost Management dashboard"
+"Which of the following is a factor when calculating Total Cost of Ownership (TCO) for the AWS Cloud?
+The number of keys migrated to AWS
+The number of servers migrated to AWS 
+The number of passwords migrated to AWS
+The number of users migrated to AWS"
+"An enterprise using AWS wants to provide to its billing department a detailed breakdown of the costs and usage of various services.
+They want the report in a CSV file for the month to the current date so they can analyze the data within Microsoft Excel.
+Which AWS Billing service would meet this requirement?
+AWS Budgets
+AWS Cost and Usage Reports 
+AWS Pricing Calculator
+AWS Cost Explorer"
+"How can multiple AWS accounts aid in allocating costs across departments?
+By providing separate billing for each department 
+By allowing departments to share resources without additional costs
+By consolidating billing into a single payment
+By providing separate access control for each department"
+"In order to predict the cost of moving resources from on-premise to the cloud, which of the following can be used?
+AWS Trusted Advisor
+AWS Pricing Calculator 
+AWS WAF
+AWS Inspector"
+"Which of the following EC2 instance types will realize a savings over time in exchange for a contracted term-of-service?
+On-demand instances
+Reserved instances 
+Spot instances
+Discount instances"
+"An enterprise using AWS wants to provide to its billing department a detailed breakdown of the costs and usage of various services.
+They want the report in a CSV file for the month to the current date so they can analyze the data within Microsoft Excel.
+Which AWS Billing service would meet this requirement?
+AWS Budgets
+AWS Cost and Usage Reports 
+AWS Pricing Calculator
+AWS Cost Explorer"
+"Your company is considering migrating to AWS. Which service should you use to do a cost comparison between on-premise and AWS?
+AWS Consolidating Billing
+AWS Pricing Calculator
+AWS Cost Explorer 
+AWS Config"
+"Which benefit of the AWS Cloud ensures that resources are always available and performing as expected, with minimal downtime or interruptions?
+Elasticity
+Reliability 
+High Availability
+Security"
+"A company wants to have a database hosted on AWS. As much as possible they want to have control over the database itself. Which of the following would be an ideal option for this.
+Using the Amazon Aurora service
+Hosting on the database on an EC2 Instance 
+Using the AWS RDS service
+Using the AWS DynamoDB service"
+"Which of the following benefits of AWS cloud refers to the ability to access resources and services that are always available and fault-tolerant?
+High Availability 
+Elasticity
+Security
+Reliability"
+"Which of the following benefits would be attractive to a company moving from on-premise to AWS? (Choose 3)
+(Choose 3)
+Control of Physical Servers
+Cost-Effective 
+Secure 
+Flexible"
+"Which of the following benefits of AWS cloud refers to the ability to pay only for the resources you use, without any upfront costs or long-term commitments?
+Pay-as-you-go pricing 
+Scalability
+Security
+Reliability"
+"A company is migrating to the AWS Cloud instead of running its infrastructure on-premises.
+Which of the following are advantages of this migration? (Choose two.)
+(Choose 2)
+Increased global reach and agility 
+Redundancy by default for all compute services 
+Ability to deploy globally in minutes
+Elimination of the need to perform security auditing"
+"Which of the following is not AWS responsibility under the Shared Responsibility Model?
+Physical Security of AWS datacenters
+Customer data 
+Networking
+Hypervisors"
+"Which of the following benefits of AWS cloud refers to the ability to achieve cost savings by leveraging AWS's massive scale?
+Economy of scale 
+Global Reach
+Security
+Reliability"
+"How does the AWS cloud enable users to focus on business value?
+By offering managed services that automate common administrative tasks
+By providing a comprehensive set of security services and features
+By providing a global infrastructure with regions and availability zones spread across the world
+By offering pay-as-you-go pricing that enables users to start small and scale up as their needs grow"
+"Which of the following disaster recovery deployment mechanisms that has the lowest downtime
+Devops
+Warm standby 
+Backup Restore
+Pilot light"
+"Which of the following is a serverless compute offering from AWS?
+AWS SQS
+AWS Lambda 
+AWS SNS
+AWS EC2"
+"You want to take a snapshot of an EC2 Instance and create a new instance out of it. In AWS what is this snapshot equivalent to?
+EBS Snapshot
+AMI
+EC2 Snapshot 
+EBS Volumes"
+"Which of the following operations would reduce costs by moving to the cloud?
+Right-sizing infrastructure 
+Using legacy software that is not compatible with the cloud
+Increasing compliance scope
+Manually managing infrastructure"
+"Which is a significant financial benefit of shifting on-premises data center systems to AWS?
+CAPEX upfront costs are lower, adding increased privacy and security as well as computing power over time
+Replaces upfront capital expenses (CAPEX) with low variable costs over time 
+Replaces variable operational expenses (OPEX) with low upfront capital expenses (CAPEX) over time
+Replaces upfront operational expenses (OPEX) with low variable operational expenses (OPEX) over time"
+"A new company has decided they will exclusively run all of their infrastructure on AWS.
+What is the name of this cloud deployment model?
+(Choose 2)
+On-Premise 
+Cloud-Native
+Hybrid 
+Cloud-First"
+"Which of the following best describes the ability to scale computing resources up or down easily, while only paying for the resources used?
+Scalability
+Elasticity 
+Fault-tolerance
+High Availability"

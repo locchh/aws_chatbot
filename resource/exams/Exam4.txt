@@ -404,4 +404,3 @@ It allows you to store NoSQL data
 You can resize the capacity accordingly 
 Automated patches and backups  
 It allows you to store unstructured data
-
