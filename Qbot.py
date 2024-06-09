@@ -17,13 +17,16 @@ if __name__ == "__main__":
 
     while True:
         
-        query = input("User: ")
+        query = input("user: ")
         
         if query == 'exit':
             break
 
-        docs = loaded_vectordb.similarity_search(query,k=3)
+        questions = loaded_vectordb.similarity_search(query,k=3)
 
-        doc = random.choice(docs)
+        question = random.choice(questions)
 
-        print(doc.page_content,'\n')
+        print(question.page_content,'\n')
+
+    print('exit Qbot')
+    exit(0)
