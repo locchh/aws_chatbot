@@ -41,7 +41,6 @@ if __name__ == "__main__":
         
         if query.strip() == 'exit':
             break
-
         else:
             # Retrieve question
             questions = loaded_vectordb.similarity_search(query,k=3)

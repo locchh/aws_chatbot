@@ -1,3 +1,5 @@
+fastapi
+uvicorn
 langchain
 langchain-community
-unstructured
+#unstructured
