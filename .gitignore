@@ -20,3 +20,5 @@ checkpoints
 *.tar
 *.rar
 *.gz
+
+*.log

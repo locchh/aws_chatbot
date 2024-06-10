@@ -1,19 +1,7 @@
 import random
-import logging
 import uvicorn
-import logging
 from fastapi import FastAPI
 
-# Configure logging
-logging.basicConfig(
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    level=logging.INFO,
-    datefmt='%Y-%m-%d %H:%M:%S'
-)
-logger = logging.getLogger("chat_logger")
-logger.info('Start Application!')
-
-# Create application instance
 app = FastAPI()
 
 # List of funny excuses
