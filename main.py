@@ -200,14 +200,10 @@ async def get_ui():
                 // Define global variabel
                 let status = '';
                 let content = '';
-
                 async function generateQuestion() {
-
                     if (status === '' || status === 'question'){
-
                         const prompt = document.getElementById("prompt").value;
                         const max_tokens = document.getElementById("max_tokens").value;
-
                         const response = await fetch('/question', {
                             method: 'POST',
                             headers: {
@@ -217,18 +213,13 @@ async def get_ui():
                             });
                         
                         const data = await response.json();
-
                         document.getElementById("response").innerText = data.text;
-
                         // Change status
                         status = 'answer';
                         content = data.text;
                     }
-
                     else if (status === 'answer'){
-
                         const max_tokens = document.getElementById("max_tokens").value;
-
                         const response = await fetch('/answer', {
                             method: 'POST',
                             headers: {
@@ -238,9 +229,7 @@ async def get_ui():
                             });
                         
                         const data = await response.json();
-
                         document.getElementById("response").innerText = data.text;
-
                         // Change status
                         status = 'question';
                     }
