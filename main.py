@@ -197,9 +197,10 @@ async def get_ui():
                 <p id="response"></p>
             </div>
             <script>
-                // Define global variabel
+                // Define global variables
                 let status = '';
                 let content = '';
+                // Define function
                 async function generateQuestion() {
                     if (status === '' || status === 'question'){
                         const prompt = document.getElementById("prompt").value;
@@ -211,8 +212,8 @@ async def get_ui():
                                 },
                             body: JSON.stringify({ prompt: prompt, max_tokens: parseInt(max_tokens) })
                             });
-                        
                         const data = await response.json();
+                        // Display
                         document.getElementById("response").innerText = data.text;
                         // Change status
                         status = 'answer';
@@ -227,8 +228,8 @@ async def get_ui():
                                 },
                             body: JSON.stringify({ prompt: content, max_tokens: parseInt(max_tokens) })
                             });
-                        
                         const data = await response.json();
+                        // Display
                         document.getElementById("response").innerText = data.text;
                         // Change status
                         status = 'question';
