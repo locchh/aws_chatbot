@@ -69,8 +69,7 @@ class QuestionRequest(BaseModel):
 
 @app.get("/")
 async def get_ui():
-    html_content = """
-    <!DOCTYPE html>
+    html_content = """<!DOCTYPE html>
     <html>
 
     <head>
@@ -80,54 +79,89 @@ async def get_ui():
 
             body {
                 font-family: 'Roboto', sans-serif;
-                background: linear-gradient(135deg, #f0f0f0 25%, #dcdcdc 100%);
+                background: linear-gradient(0deg, #2c3e50, #4ca1af);
                 margin: 0;
                 padding: 0;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 height: 100vh;
+                color: #ecf0f1;
             }
 
             .container {
-                background-color: #ffffff;
+                position: relative;
+                background-color: linear-gradient(135deg, #2c3e50, #4ca1af);
                 padding: 30px;
                 border-radius: 12px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
                 width: 400px;
                 text-align: center;
                 transition: transform 0.2s, box-shadow 0.2s;
+                overflow: hidden;
+            }
+
+            .container:before,
+            .container:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 12px;
+                pointer-events: none;
+                transition: opacity 0.2s;
+            }
+
+            .container:before {
+                background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.05), transparent 60%);
+                opacity: 0;
+            }
+
+            .container:after {
+                background: radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.05), transparent 60%);
+                opacity: 0;
+            }
+
+            .container:hover:before,
+            .container:hover:after {
+                opacity: 1;
             }
 
             .container:hover {
                 transform: translateY(-5px);
-                box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+                box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
             }
 
             h1 {
                 font-size: 28px;
                 margin-bottom: 20px;
-                color: #333;
+                color: #ecf0f1;
             }
 
-            textarea, input {
+            textarea,
+            input {
                 width: calc(100% - 24px);
                 padding: 12px;
                 margin-bottom: 15px;
-                border: 1px solid #ddd;
+                border: 1px solid #7f8c8d;
                 border-radius: 8px;
                 font-size: 16px;
+                background-color: #2c3e50;
+                color: #ecf0f1;
                 transition: border-color 0.2s;
             }
 
-            textarea:focus, input:focus {
-                border-color: #007bff;
+            textarea:focus,
+            input:focus {
+                border-color: #4ca1af;
             }
 
             button {
                 width: 100%;
                 padding: 12px;
-                background-color: #007bff;
+                background-color: #4ca1af;
                 color: white;
                 border: none;
                 border-radius: 8px;
@@ -138,20 +172,20 @@ async def get_ui():
             }
 
             button:hover {
-                background-color: #0056b3;
+                background-color: #3a99d8;
                 transform: translateY(-2px);
             }
 
             #response {
                 margin-top: 20px;
                 font-size: 16px;
-                color: #333;
+                color: #ecf0f1;
                 word-wrap: break-word;
                 text-align: left;
-                background-color: #f9f9f9;
+                background-color: #2c3e50;
                 padding: 10px;
                 border-radius: 8px;
-                border: 1px solid #ddd;
+                border: 1px solid #7f8c8d;
             }
         </style>
     </head>
