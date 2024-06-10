@@ -196,24 +196,39 @@ async def get_ui():
             <h1>AWS ChatBot</h1>
             <textarea id="prompt" rows="4" placeholder="Enter your prompt here..."></textarea><br>
             <input type="number" id="max_tokens" value="50" min="1" max="150"><br>
-            <button onclick="generateQuestion()">Ask Question</button>
+            <button onclick="generateQuestion()">Ask Me</button>
             <p id="response"></p>
         </div>
 
         <script>
+            let status = '';
+            
             async function generateQuestion() {
+
                 const prompt = document.getElementById("prompt").value;
                 const max_tokens = document.getElementById("max_tokens").value;
 
-                const response = await fetch('/question', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ prompt: prompt, max_tokens: parseInt(max_tokens) })
-                });
-                const data = await response.json();
-                document.getElementById("response").innerText = data.text;
+                if (status === '' || status === 'question'){
+
+                    const response = await fetch('/question', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                            },
+                        body: JSON.stringify({ prompt: prompt, max_tokens: parseInt(max_tokens) })
+                        });
+                    
+                    const data = await response.json();
+                    document.getElementById("response").innerText = data.text;
+
+                    // Change status
+                    status = 'answer';
+                }
+
+                else if (status === 'answer'){
+                    // Change status
+                    status = 'question';
+                }
             }
         </script>
 
