@@ -45,10 +45,10 @@ temperature = 0.4
 max_tokens = 150
 model_name = 'gpt-3.5-turbo'
 
-openai_api_key_path = '/home/loc/Documents/OPENAI_API_KEY.txt'
-with open(openai_api_key_path) as f:
-    OPENAI_API_KEY = f.read().strip()
-    os.environ['OPENAI_API_KEY'] = OPENAI_API_KEY
+# openai_api_key_path = '/home/loc/Documents/OPENAI_API_KEY.txt'
+# with open(openai_api_key_path) as f:
+#     OPENAI_API_KEY = f.read().strip()
+#     os.environ['OPENAI_API_KEY'] = OPENAI_API_KEY
 
 # Create client OpenAI
 client = OpenAI()
