@@ -1,5 +1,9 @@
+openai
+chromadb
 fastapi
 uvicorn
 langchain
-#langchain-community
+langchain-community
+# pip3 install torch --index-url https://download.pytorch.org/whl/cpu
+# pip3 install sentence-transformers
 #unstructured
