@@ -63,8 +63,9 @@ if __name__ == "__main__":
                 ```{question}```
                 '''
 
-                messages = [{'role':'system','content':system_message},
-                {'role':'user','content':prompt}
+                messages = [
+                    {'role':'system','content':system_message},
+                    {'role':'user','content':prompt}
                 ]
                 
                 # Give the answer

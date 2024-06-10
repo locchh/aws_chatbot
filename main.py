@@ -248,6 +248,55 @@ async def generate_question(request: QuestionRequest):
 
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.post("/answer")
+async def generate_answer(request: OpenAIRequest):
+    try:
+        #Prompting
+        system_message = '''
+        You are helpful assistant.Your mission is answer the question related to AWS services.
+        The answer must base on the question, if the question is not related to AWS services.
+        You will say sorry and ask for the other question.
+        '''
+        
+        prompt = f'''
+        Answer the question delimited by the triple backticks
+        ```{request.prompt}```
+        '''
+
+        messages = [
+            {'role':'system','content':system_message},
+            {'role':'user','content':prompt}
+        ]
+
+        # Send API request
+        response = client.chat.completions.create(
+            model = model_name,
+            messages = messages,
+            max_tokens = request.max_tokens,
+            temperature = temperature,
+            top_p = top_p
+            )
+
+        logger.info(
+            {'role': 'user',
+            'content': request.prompt,
+            'status': 200,
+            'text': response.choices[0].message.content
+            })
+
+        return {'text':response.choices[0].message.content}
+
+    except Exception as e:
+
+        logger.info(
+            {'role': 'user',
+            'content': request.prompt,
+            'status': 500,
+            'text': str(e)
+            })
+
+        raise HTTPException(status_code=500, detail=str(e))
+
 @app.post("/generate")
 async def generate_text(request: OpenAIRequest):
     try:
