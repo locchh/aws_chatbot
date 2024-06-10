@@ -10,7 +10,7 @@ from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddi
 
 os.environ['TOKENIZERS_PARALLELISM']= 'False'
 
-# create embedding
+# Create embedding
 embedding = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
 
 # Load chromadb langchain
@@ -20,7 +20,7 @@ loaded_vectordb = Chroma(
     embedding_function = embedding
 )
 
-# load OPENAI_API_KEY
+# Load OPENAI_API_KEY
 top_p = 1
 temperature = 0.4
 max_tokens = 100

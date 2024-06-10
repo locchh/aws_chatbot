@@ -1,8 +1,18 @@
+import os
+os.environ['TOKENIZERS_PARALLELISM']= 'False'
+
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning)
+
 import random
 import logging
 import uvicorn
 import logging
 from fastapi import FastAPI
+
+from openai import OpenAI
+from langchain.vectorstores import Chroma
+from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 
 # Configure logging
 logging.basicConfig(
@@ -12,10 +22,37 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S'
 )
 logger = logging.getLogger("my_logger")
-logger.info('Start Application!')
+logger.info('Starting...')
 
 # Create application instance
 app = FastAPI()
+logger.info('FastAPI Application Created!')
+
+# Create embedding
+embedding = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
+logger.info('Embedding Created!')
+
+# Load chromadb langchain
+persist_directory = './chroma/'
+loaded_vectordb = Chroma(
+    persist_directory = persist_directory,
+    embedding_function = embedding
+)
+logger.info('VectorDatabase Created!')
+
+# load OPENAI_API_KEY
+top_p = 1
+temperature = 0.4
+max_tokens = 150
+model_name = 'gpt-3.5-turbo'
+
+openai_api_key_path = '/home/loc/Documents/OPENAI_API_KEY.txt'
+with open(openai_api_key_path) as f:
+    OPENAI_API_KEY = f.read().strip()
+    os.environ['OPENAI_API_KEY'] = OPENAI_API_KEY
+
+client = OpenAI()
+logger.info('OpenAI Client Created!')
 
 # List of funny excuses
 excuses = [
@@ -37,7 +74,7 @@ def read_root():
     return {"message": "Welcome to the Funny Excuses API! Use /excuse to get a funny excuse."}
 
 @app.get("/excuse")
-async def get_excuse():
+def get_excuse():
     excuse = random.choice(excuses)
     logger.info({"excuse": excuse})
     return {"excuse": excuse}
