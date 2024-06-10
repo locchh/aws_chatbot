@@ -72,13 +72,15 @@ async def get_ui():
     html_content = """
     <!DOCTYPE html>
     <html>
-    
+
     <head>
         <title>Chat UI</title>
         <style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
             body {
-                font-family: Arial, sans-serif;
-                background-color: #f0f0f0;
+                font-family: 'Roboto', sans-serif;
+                background: linear-gradient(135deg, #f0f0f0 25%, #dcdcdc 100%);
                 margin: 0;
                 padding: 0;
                 display: flex;
@@ -86,45 +88,70 @@ async def get_ui():
                 align-items: center;
                 height: 100vh;
             }
+
             .container {
-                background-color: white;
-                padding: 20px;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                background-color: #ffffff;
+                padding: 30px;
+                border-radius: 12px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
                 width: 400px;
                 text-align: center;
+                transition: transform 0.2s, box-shadow 0.2s;
             }
+
+            .container:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+            }
+
             h1 {
-                font-size: 24px;
+                font-size: 28px;
                 margin-bottom: 20px;
+                color: #333;
             }
+
             textarea, input {
-                width: calc(100% - 22px);
-                padding: 10px;
-                margin-bottom: 10px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                font-size: 14px;
+                width: calc(100% - 24px);
+                padding: 12px;
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                font-size: 16px;
+                transition: border-color 0.2s;
             }
+
+            textarea:focus, input:focus {
+                border-color: #007bff;
+            }
+
             button {
                 width: 100%;
-                padding: 10px;
+                padding: 12px;
                 background-color: #007bff;
                 color: white;
                 border: none;
-                border-radius: 4px;
+                border-radius: 8px;
                 cursor: pointer;
                 font-size: 16px;
+                font-weight: 500;
+                transition: background-color 0.2s, transform 0.2s;
             }
+
             button:hover {
                 background-color: #0056b3;
+                transform: translateY(-2px);
             }
+
             #response {
                 margin-top: 20px;
-                font-size: 14px;
+                font-size: 16px;
                 color: #333;
                 word-wrap: break-word;
                 text-align: left;
+                background-color: #f9f9f9;
+                padding: 10px;
+                border-radius: 8px;
+                border: 1px solid #ddd;
             }
         </style>
     </head>
@@ -143,7 +170,7 @@ async def get_ui():
             async function generateQuestion() {
                 const prompt = document.getElementById("prompt").value;
                 const max_tokens = document.getElementById("max_tokens").value;
-                
+
                 const response = await fetch('/question', {
                     method: 'POST',
                     headers: {
