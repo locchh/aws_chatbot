@@ -8,7 +8,10 @@ import random
 import logging
 import uvicorn
 import logging
-from fastapi import FastAPI
+
+from pydantic import BaseModel
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
 
 from openai import OpenAI
 from langchain.vectorstores import Chroma
@@ -22,11 +25,7 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S'
 )
 logger = logging.getLogger("my_logger")
-logger.info('Starting...')
-
-# Create application instance
-app = FastAPI()
-logger.info('FastAPI Application Created!')
+logger.info('Start Initialization!')
 
 # Create embedding
 embedding = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
@@ -51,33 +50,172 @@ with open(openai_api_key_path) as f:
     OPENAI_API_KEY = f.read().strip()
     os.environ['OPENAI_API_KEY'] = OPENAI_API_KEY
 
+# Create client OpenAI
 client = OpenAI()
 logger.info('OpenAI Client Created!')
 
-# List of funny excuses
-excuses = [
-    "My dog ate my homework.",
-    "I thought today was Saturday.",
-    "I was abducted by aliens.",
-    "My alarm didn't go off.",
-    "I got stuck in the elevator.",
-    "I lost my keys.",
-    "I had to help a cat stuck in a tree.",
-    "My goldfish is sick.",
-    "I was too busy binge-watching my favorite show.",
-    "My computer crashed and I lost all my work."
-]
+# Create application instance
+app = FastAPI()
+logger.info('FastAPI Application Created!')
+
+logger.info('Initialization Successful!')
+
+class OpenAIRequest(BaseModel):
+    prompt: str
+    max_tokens: int = max_tokens
+
+class QuestionRequest(BaseModel):
+    prompt: str
 
 @app.get("/")
-def read_root():
-    logger.info({"message": "Welcome to the Funny Excuses API! Use /excuse to get a funny excuse."})
-    return {"message": "Welcome to the Funny Excuses API! Use /excuse to get a funny excuse."}
+async def get_ui():
+    html_content = """
+    <!DOCTYPE html>
+    <html>
+    
+    <head>
+        <title>Chat UI</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            .container {
+                background-color: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                width: 400px;
+                text-align: center;
+            }
+            h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            textarea, input {
+                width: calc(100% - 22px);
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 14px;
+            }
+            button {
+                width: 100%;
+                padding: 10px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+            button:hover {
+                background-color: #0056b3;
+            }
+            #response {
+                margin-top: 20px;
+                font-size: 14px;
+                color: #333;
+                word-wrap: break-word;
+                text-align: left;
+            }
+        </style>
+    </head>
 
-@app.get("/excuse")
-def get_excuse():
-    excuse = random.choice(excuses)
-    logger.info({"excuse": excuse})
-    return {"excuse": excuse}
+    <body>
+
+        <div class="container">
+            <h1>AWS ChatBot</h1>
+            <textarea id="prompt" rows="4" placeholder="Enter your prompt here..."></textarea><br>
+            <input type="number" id="max_tokens" value="50" min="1" max="150"><br>
+            <button onclick="generateQuestion()">Ask Question</button>
+            <p id="response"></p>
+        </div>
+
+        <script>
+            async function generateQuestion() {
+                const prompt = document.getElementById("prompt").value;
+                const max_tokens = document.getElementById("max_tokens").value;
+                
+                const response = await fetch('/question', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ prompt: prompt, max_tokens: parseInt(max_tokens) })
+                });
+                const data = await response.json();
+                document.getElementById("response").innerText = data.text;
+            }
+        </script>
+
+    </body>
+
+    </html>
+    """
+
+    return HTMLResponse(content=html_content, status_code=200)
+
+@app.post('/question')
+async def generate_question(request: QuestionRequest):
+    try:
+        questions = loaded_vectordb.similarity_search(request.prompt,k=5)
+        question = random.choice(questions)
+
+        logger.info(
+            {'role': 'user',
+            'content': request.prompt,
+            'status': 200,
+            'text': question.page_content
+            })
+
+        return {'text':question.page_content}
+    except Exception as e:
+        logger.info(
+            {'role': 'user',
+            'content': request.prompt,
+            'status': 500,
+            'text': str(e)
+            })
+
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/generate")
+async def generate_text(request: OpenAIRequest):
+    try:
+        response = client.chat.completions.create(
+            model = model_name,
+            messages = [{'role':'user','content':request.prompt}],
+            max_tokens = request.max_tokens,
+            temperature = temperature,
+            top_p = top_p
+            )
+
+        logger.info(
+            {'role': 'user',
+            'content': request.prompt,
+            'status': 200,
+            'text': response.choices[0].message.content
+            })
+
+        return {'text':response.choices[0].message.content}
+    except Exception as e:
+
+        logger.info(
+            {'role': 'user',
+            'content': request.prompt,
+            'status': 500,
+            'text': str(e)
+            })
+
+        raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
 
