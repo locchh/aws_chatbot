@@ -1,7 +1,20 @@
 import random
+import logging
 import uvicorn
+import logging
 from fastapi import FastAPI
 
+# Configure logging
+logging.basicConfig(
+    filename = 'app.log',
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    level=logging.INFO,
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+logger = logging.getLogger("my_logger")
+logger.info('Start Application!')
+
+# Create application instance
 app = FastAPI()
 
 # List of funny excuses
@@ -20,11 +33,13 @@ excuses = [
 
 @app.get("/")
 def read_root():
+    logger.info({"message": "Welcome to the Funny Excuses API! Use /excuse to get a funny excuse."})
     return {"message": "Welcome to the Funny Excuses API! Use /excuse to get a funny excuse."}
 
 @app.get("/excuse")
 async def get_excuse():
     excuse = random.choice(excuses)
+    logger.info({"excuse": excuse})
     return {"excuse": excuse}
 
 if __name__ == "__main__":
